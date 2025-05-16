@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>100 PICS Banner Slideshow</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #FFD9E7; /* lichtroze achtergrond */
+  }
+  .banner {
+    width: 100vw;
+    height: 70px;
+    background-color: #CCBFF6; /* paarse banner */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-sizing: border-box;
+    font-family: serif;
+    font-size: 28px;
+    color: white;
+  }
+  .logo {
+    flex: 1;
+  }
+  .kader {
+    width: 150px;
+    height: 55px;
+    border: 2px solid white;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div id="banner" class="banner"></div>
+
+<script>
+  const banners = [
+    {
+      logo: "",
+      kader: false
+    },
+    {
+      logo: "100 PICS",
+      kader: false
+    },
+    {
+      logo: "100 PICS",
+      kader: true
+    }
+  ];
+
+  const bannerDiv = document.getElementById("banner");
+  let current = 0;
+
+  function showBanner(index) {
+    bannerDiv.innerHTML = `
+      <div class="logo">${banners[index].logo}</div>
+      ${banners[index].kader ? '<div class="kader"></div>' : ''}
+    `;
+  }
+
+  function nextBanner() {
+    if (current < banners.length - 1) {
+      current++;
+      showBanner(current);
+      setTimeout(nextBanner, 3000);
+    }
+  }
+
+  showBanner(current);
+  setTimeout(nextBanner, 3000);
+</script>
+
+</body>
+</html>
